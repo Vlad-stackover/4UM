@@ -71,10 +71,12 @@ main {
 }
 
 
+a{
+    text-decoration: none;
+}
 
 
-
-.footer {
+footer {
     background-color: #333;
     color: #424040; 
     padding: 10px;
@@ -85,25 +87,25 @@ main {
     text-decoration: none;
 }
 
-.footer:hover{
+footer:hover{
     color: #ddd;
 }
 
-.footer a:link,
-.footer a:visited {
+footer a:link,
+footer a:visited {
     color: #424040; /* Unvisited link color */
     text-decoration: none;
 }
 
-.footer a:hover {
+footer a:hover {
     color: #ddd; /* Hovered link color */
 }
 
-.footer a:focus {
+footer a:focus {
     color: #ddd; /* Focused link color */
 }
 
-.footer a:active {
+footer a:active {
     color: #424040; /* Active link color */
 }
 
@@ -155,9 +157,10 @@ h1{
     pointer-events: none; /* Ensure mouse events don't get blocked */
 }
 
+
 .category_div {
     list-style-type: none;
-    padding: 0;
+    padding: 20px;
     text-decoration: none;
 }
 
