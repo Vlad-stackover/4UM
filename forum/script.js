@@ -7,3 +7,4 @@ function Sprawdz(form) {
     
     return true;
 }
+

@@ -79,50 +79,34 @@ main {
 
 
 
-.thread {
-    margin-top: 20px;
-}
 
-.thread h2 {
-    color: #333;
-    margin-bottom: 10px;
-}
 
-.post {
-    background-color: #f9f9f9;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-
-.post p {
-    margin-bottom: 10px;
-}
-
-.reply-form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-
-.reply-form button {
-    background-color: #4caf50;
-    color: #fff;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-footer {
+.footer {
     background-color: #333;
     color: #424040;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
     position: relative;
-    bottom: 0; /* Position at the bottom of the viewport */
-    width: 100%;
+    
+    margin-top: auto;
+
+    font-size: small;
+
+    text-decoration: none;
+
     
 }
+
+
+footer:link{
+    color: #367238;
+}
+
+a.footer:visited { text-decoration: none; color:red; }
+a.footer:hover { text-decoration: none; color:blue; }
+a.footer:focus { text-decoration: none; color:yellow; }
+a.footer:active { text-decoration: none; color:black }
+
 
 
 .social-links {
@@ -135,7 +119,7 @@ footer {
 }
 
 .social-links li a {
-    color: #fff;
+    
     text-decoration: none;
 }
 
@@ -195,4 +179,5 @@ h1{
     border-radius: 4px;
     width: 60px;
     text-align: center;
+    margin: auto;
 }
