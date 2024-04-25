@@ -34,6 +34,7 @@ header {
 
 a{
     text-decoration: none;
+    color: #6f5d44;
 }
 
 .logo {
@@ -50,7 +51,7 @@ nav ul li {
     margin-right: 20px;
 }
 
-.create-post a {
+.create-post-btn a{
     background-color: #367238;
     color: #ddd;
     padding: 8px 16px;
@@ -168,8 +169,10 @@ h1{
 
 
 .posts_container{
-    background-color: #367238;
+    /* border: #367238 solid 4px; */
+    border-radius: 15px;
     width: 100%;
+    margin: 10px;
     /* display: flex; */
 }
 
@@ -180,21 +183,45 @@ h1{
 
 /* create.html */
 
-.create-logo{
+.submit_btn{
     background-color: #367238;
     color: #ddd;
     padding: 8px 16px;
     text-decoration: none;
     border-radius: 4px;
-    width: 60px;
-    text-align: center;
-    margin: auto;
+    font-size: medium;
 }
+
 
 .create_form{
     width: 30%;
-    border: #367238 solid 1px;
+    /* border: #367238 solid 1px; */
     border-radius: 15px;
     margin: auto;
     text-align: center;
 }
+
+/* inputs */
+input[type="text"] {
+    padding: 10px;
+    color: #ddd;
+    border: 2px solid #121010;
+    background-color: #1f242c;
+    border-radius: 5px;
+    font-size: 16px;
+    }
+
+    /* Style for the input when it's focused */
+    input[type="text"]:focus {
+    border-color: #007bff; /* Change to your desired color */
+    box-shadow: 0 0 5px #007bff; /* Change to your desired color */
+    }
+select{
+    padding: 10px;
+    border: 2px solid #121010;
+    background-color: #1f242c;
+    color: #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    }
+

@@ -7,6 +7,8 @@
     <!-- External CSS styles -->
     <link rel="stylesheet" href="style.css">
 
+    <script src="script.js"></script>
+
     <!-- favicon -->
     <link rel="icon" type="image/x-icon" href="logo.ico">
 
@@ -32,7 +34,7 @@
                 
             </ul>
         </nav>
-        <div class="create-post">
+        <div class="create-post-btn">
             <a href="index.html">Back</a>
         </div>
     </header>
@@ -41,10 +43,10 @@
    
 
     <form class="create_form" onsubmit="return Sprawdz(this)">
-        <label for="nick">Nick:</label>
+        <label for="nick">Nick:</label><br>
         <input type="text" id="nick" name="nick"><br><br>
         
-        <label for="topic">Topic:</label>
+        <label for="topic">Topic:</label><br>
         <select id="topic" name="topic">
             <option value="COFFEE">COFFEE</option>
             <option value="CARS">CARS</option>
@@ -55,12 +57,12 @@
         </select><br>
         <br>
 
-        <label for="title">Title:</label>
+        <label for="title">Title:</label><br>
         <input type="text" id="title" name="title"><br><br>
 
-        <label for="text">Body text:</label>
+        <label for="text">Body text:</label><br>
         <input type="text" id="text" name="text"><br><br>
-        <input class="create-logo" type="submit" value="Create">
+        <input class="submit_btn" type="submit" value="Create">
         
         
     </form>
