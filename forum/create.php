@@ -24,7 +24,7 @@
     <!-- Header -->
     <header>
         <div class="logo">
-            <a href="index.html"><h1>4UM</h1></a>
+            <a href="index.php"><h1>4UM</h1></a>
         </div>
         <nav>
             <ul>
