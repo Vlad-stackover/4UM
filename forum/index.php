@@ -1,8 +1,29 @@
 <?php
-    include("database.php");
-    $sql1 = 'INSERT INTO users(username, email) VALUES ("AnonymousUser", "test@gmail.com")';
-    
-    mysqli_query($conn, $sql1);
+// Include database connection code
+include("database.php");
+
+// Assuming the user is logged in and you have their user ID stored in a variable
+$userID = 3; // Example user ID
+
+// Query to retrieve username based on user ID
+$sql = "SELECT username FROM users WHERE userId = $userID";
+
+// Execute the query
+$result = mysqli_query($conn, $sql);
+
+// Check if the query executed successfully
+if ($result) {
+    // Fetch the row from the result set
+    $row = mysqli_fetch_assoc($result);
+    // Get the username
+    $username = $row['username'];
+} else {
+    // Error handling if the query fails
+    $username = "Guest"; // Default to "Guest" if username retrieval fails
+}
+
+// Close the database connection
+mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
@@ -66,14 +87,19 @@
 
         <div class="post">
 
-            <h3><b>How to repair laptop?</b> AnonymousUser 25/04/2024 9:56</h3>
-            <hr>
-            <h3><b>Random Topic</b> AnonymousUser 25/04/2024 9:56</h3>
-            <hr>
-            <h3><b>Price for new turbo</b> AnonymousUser 25/04/2024 9:56</h3>
-            <hr>
-            <h3><b>Kiedy zostanie skończona ta strona?</b> AnonymousUser 25/04/2024 9:56</h3>
-            <hr>
+        <?php if(isset($username)): ?>
+
+        <h3>Hello, <?php echo $username; ?></h3>
+        <?php else: ?>
+        <p>Hello, Guest!</p>
+        <?php endif; ?>
+        <hr>
+        <!-- <h3><b>Random Topic</b> AnonymousUser 25/04/2024 9:56</h3>
+        <hr>
+        <h3><b>Price for new turbo</b> AnonymousUser 25/04/2024 9:56</h3>
+        <hr>
+        <h3><b>Kiedy zostanie skończona ta strona?</b> AnonymousUser 25/04/2024 9:56</h3>
+        <hr> -->
 
 
         </div>
