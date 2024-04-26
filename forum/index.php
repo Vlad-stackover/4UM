@@ -34,7 +34,7 @@
         </ul>
     </nav>
     <div class="create-post-btn">
-        <a href="create.html">Create New Topic</a>
+        <a href="create.php">Create New Topic</a>
     </div>
 </header>
 

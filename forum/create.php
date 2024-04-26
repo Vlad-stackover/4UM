@@ -35,7 +35,7 @@
             </ul>
         </nav>
         <div class="create-post-btn">
-            <a href="index.html">Back</a>
+            <a href="index.php">Back</a>
         </div>
     </header>
     
