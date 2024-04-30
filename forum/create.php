@@ -44,7 +44,7 @@
 
     <form class="create_form" onsubmit="return Sprawdz(this)">
         <label for="nick">Nick:</label><br>
-        <input type="text" id="nick" name="nick"><br><br>
+        <input type="text" id="nick" name="nick" required><br><br>
         
         <label for="topic">Topic:</label><br>
         <select id="topic" name="topic">
@@ -58,11 +58,11 @@
         <br>
 
         <label for="title">Title:</label><br>
-        <input type="text" id="title" name="title"><br><br>
+        <input type="text" id="title" name="title" required><br><br>
 
         <label for="text">Body text:</label><br>
         <input type="text" id="text" name="text"><br><br>
-        <input class="submit_btn" type="submit" value="Post">
+        <input class="submit_btn" type="submit" value="Post" required>
         
         
     </form>
