@@ -1,31 +1,3 @@
-<?php
-// Include database connection code
-include("database.php");
-
-// Assuming the user is logged in and you have their user ID stored in a variable
-$userID = 3; // Example user ID
-
-// Query to retrieve username based on user ID
-$sql = "SELECT username FROM users WHERE userId = $userID";
-
-// Execute the query
-$result = mysqli_query($conn, $sql);
-
-// Check if the query executed successfully
-if ($result) {
-    // Fetch the row from the result set
-    $row = mysqli_fetch_assoc($result);
-    // Get the username
-    $username = $row['username'];
-} else {
-    // Error handling if the query fails
-    $username = "Guest"; // Default to "Guest" if username retrieval fails
-}
-
-// Close the database connection
-mysqli_close($conn);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -87,20 +59,29 @@ mysqli_close($conn);
 
         <div class="post">
 
-        <?php if(isset($username)): ?>
+        <?php
+            // Include database connection code
+            include("database.php");
 
-        <h3>Hello, <?php echo $username; ?></h3>
-        <?php else: ?>
-        <p>Hello, Guest!</p>
-        <?php endif; ?>
-        <hr>
-        <!-- <h3><b>Random Topic</b> AnonymousUser 25/04/2024 9:56</h3>
-        <hr>
-        <h3><b>Price for new turbo</b> AnonymousUser 25/04/2024 9:56</h3>
-        <hr>
-        <h3><b>Kiedy zostanie skończona ta strona?</b> AnonymousUser 25/04/2024 9:56</h3>
-        <hr> -->
+            $sql = "SELECT * FROM users";
+            $result = $conn->query($sql);
 
+            // Step 3: Fetch the results of the query
+            if ($result->num_rows > 0) {
+                // Step 4: Display the user data on your webpage
+                
+                while($row = $result->fetch_assoc()) {
+                    
+                    echo "  <strong> Username: </strong>  <span style='margin-right: 15px;'>" . $row["username"]. "</span> <strong> Email: </strong> " . $row["email"].  "<hr>";
+    
+                    
+                }
+               
+            } else {
+                echo "0 results";
+            }
+            $conn->close();
+        ?>
 
         </div>
     </section>
