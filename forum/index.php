@@ -72,7 +72,7 @@
                 
                 while($row = $result->fetch_assoc()) {
                     
-                    echo "<span style='margin-right: 15px;'>" . $row["username"]. "</span>" . $row["userId"].  "<hr>";
+                    echo "<span style='margin-right: 15px;'>" . $row["username"]. "</span>" . $row["email"]. $row["userId"]. "<hr>";
     
                     
                 }
