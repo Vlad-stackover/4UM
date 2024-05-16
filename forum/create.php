@@ -94,14 +94,12 @@
       
     <!-- Footer -->
     <footer>
-
-        <p></p><a href="https://github.com/Vlad-stackover">&copy; <script>document.write(new Date().getFullYear());</script> Vlad-Stackover. All rights reserved.</a></p>
+        <p><a href="https://github.com/Vlad-stackover">&copy; <script>document.write(new Date().getFullYear());</script> Vlad-Stackover. All rights reserved.</a></p>
         <ul class="social-links">
-            <li><a href="#">Github</a></li>
-            <li><a href="#">LinkedIn</a></li>
+            <li><a href="https://github.com/Vlad-stackover">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/vlad-gruzin-638862305/">LinkedIn</a></li>
             <li><a href="#">Email</a></li>
         </ul>
-        
     </footer>
 
 
