@@ -23,7 +23,7 @@
 <!-- Header -->
 <header>
     <div class="logo">
-        <a href="index.php"><h1>4UM</h1></a>
+        <a href="index.php"><h1> 4UM</h1></a>
     </div>
     <nav>
         <ul>
@@ -63,7 +63,7 @@
             // Include database connection code
             include("database.php");
 
-            $sql = "SELECT * FROM users";
+            $sql = "SELECT * FROM posts";
             $result = $conn->query($sql);
 
             // Step 3: Fetch the results of the query
@@ -72,7 +72,7 @@
                 
                 while($row = $result->fetch_assoc()) {
                     
-                    echo "<span style='margin-right: 15px;'>" . $row["username"]. "</span>" . $row["email"]. $row["userId"]. "<hr>";
+                    echo $row["title"] ."<span style='margin-right: 15px; margin-left: 15px;'>" . $row["username"]. "</span>" . $row["topic"]. "<hr>";
     
                     
                 }

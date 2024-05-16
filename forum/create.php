@@ -42,9 +42,9 @@
 
    
 
-    <form class="create_form" onsubmit="return Sprawdz(this)">
-        <label for="nick">Nick:</label><br>
-        <input type="text" id="nick" name="nick" required><br><br>
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+        <label for="username">User name:</label><br>
+        <input type="text" id="username" name="username" required><br><br>
         
         <label for="topic">Topic:</label><br>
         <select id="topic" name="topic">
@@ -60,12 +60,37 @@
         <label for="title">Title:</label><br>
         <input type="text" id="title" name="title" required><br><br>
 
-        <label for="text">Body text:</label><br>
-        <input type="text" id="text" name="text"><br><br>
+        <label for="content">Body text:</label><br>
+        <input type="text" id="content" name="content"><br><br>
         <input class="submit_btn" type="submit" value="Post" required>
         
         
     </form>
+
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        include("database.php");
+    
+        
+    
+        $username = $_POST['username'];
+        $topic = $_POST['topic'];
+        $title = $_POST['title'];
+        $content = $_POST['content'];
+        
+    
+        $sql = "INSERT INTO posts(username, topic, title, content)
+        VALUES ('$username', '$topic', '$title', '$content')";
+    
+        if ($conn->query($sql) === TRUE) {
+            echo "Post was added sucesfully!";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+    
+        $conn->close();
+    }
+    ?>
       
     <!-- Footer -->
     <footer>
