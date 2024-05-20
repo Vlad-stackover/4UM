@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>4UM</title>
     <!-- External CSS styles -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 
 
     <!-- favicon -->
@@ -23,18 +23,18 @@
 <!-- Header -->
 <header>
     <div class="logo">
-        <a href="index.php"><h1> 4UM</h1></a>
+        <a href="../index.php"><h1> 4UM</h1></a>
     </div>
     <nav>
         <ul>
             <li><a href="#">Home</a></li>
             <li><a href="#">Forums</a></li>
-            <li><a href="signup.php">Sign Up</a></li>
+            <li><a href="#">Search</a></li>
             
         </ul>
     </nav>
     <div class="create-post-btn">
-        <a href="create.php">Create New Topic</a>
+        <a href="../create.php">Create New Topic</a>
     </div>
 </header>
 
@@ -45,12 +45,12 @@
     <aside class="sidebar">
         <div class="category_div">
             <h1 id="select_category">Category</h1>
-            <h3><a href="subpages\tech.php">TECH</a></h3>
-            <h3><a href="subpages\cars.php">CARS</a></h3>
-            <h3><a href="subpages\guns.php">GUNS</a></h3>
-            <h3><a href="subpages\coffee.php">COFFEE</a></h3>
-            <h3><a href="subpages\health.php">HEALTH</a></h3>
-            <h3><a href="subpages\programing.php">PROGRAMING</a></h3>
+            <h3><a href="tech.php">TECH</a></h3>
+            <h3><a href="cars.php">CARS</a></h3>
+            <h3><a href="guns.php">GUNS</a></h3>
+            <h3><a href="coffee.php">COFFEE</a></h3>
+            <h3><a href="health.php">HEALTH</a></h3>
+            <h3><a href="programing.php">PROGRAMING</a></h3>
             
         </div>
     </aside>
@@ -61,9 +61,10 @@
 
         <?php
             // Include database connection code
-            include("database.php");
+            include("../database.php");
 
-            $sql = "SELECT * FROM posts";
+            $sql = "SELECT * FROM posts
+            WHERE topic='COFFEE';";
             $result = $conn->query($sql);
 
             // Step 3: Fetch the results of the query
