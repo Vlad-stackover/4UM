@@ -27,10 +27,7 @@
     </div>
     <nav>
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Forums</a></li>
-            <li><a href="#">Search</a></li>
-            
+            <li><a href="signup.php">Sign Up</a></li>         
         </ul>
     </nav>
     <div class="create-post-btn">

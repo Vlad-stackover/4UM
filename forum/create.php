@@ -42,7 +42,7 @@
 
    
 
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <form class="create_form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <label for="username">User name:</label><br>
         <input type="text" id="username" name="username" required><br><br>
         

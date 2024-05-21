@@ -27,10 +27,30 @@
     </div>
     <nav>
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Forums</a></li>
             <li><a href="signup.php">Sign Up</a></li>
-            
+            <?php
+                // Include database connection code
+                include("database.php");
+
+                $sql = "SELECT username FROM users";
+                $result = $conn->query($sql);
+
+                // Step 3: Fetch the results of the query
+                if ($result->num_rows > 0) {
+                    // Step 4: Display the user data on your webpage
+                    
+                    while($row = $result->fetch_assoc()) {
+                        
+                        echo $row["username"]. "<span style='margin-right: 15px; margin-left: 15px;'>";
+        
+                        
+                    }
+                
+                } else {
+                    echo "AnonimousUser". "<span style='margin-right: 15px; margin-left: 15px;'>";
+                }
+                $conn->close();
+            ?>
         </ul>
     </nav>
     <div class="create-post-btn">
