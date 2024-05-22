@@ -16,7 +16,7 @@
     <!-- font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
 
 </head>
 <body>
@@ -31,7 +31,6 @@
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Forums</a></li>
                 <li><a href="#">Search</a></li>
-                
             </ul>
         </nav>
         <div class="create-post-btn">
@@ -39,48 +38,44 @@
         </div>
     </header>
     
-
-   
-
-    <form class="create_form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <form class="create_form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
         <label for="username">User name:</label><br>
         <input type="text" id="username" name="username" required><br><br>
-        
 
-        <label for="title">Password:</label><br>
-        <input type="text" id="password" name="password" required><br><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
 
-        <input class="submit_btn" type="submit" value="Create" required>
-        <a href="login.php">or Delete Account</a>
-        
-        
-        
+        <input class="submit_btn" type="submit" value="Delete Account">
     </form>
 
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         include("database.php");
-    
-        
-    
+
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-    
-        $sql = "INSERT INTO users(username, password)
-        VALUES ('$username', '$password')";
-    
-        if ($conn->query($sql) === TRUE) {
-            echo "<script type='text/javascript'>alert('Welcome to our forum $username');</script>";
+        // Validate inputs
+        if (empty($username) || empty($password)) {
+            echo "<script type='text/javascript'>alert('Both fields are required');</script>";
         } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            // Use prepared statements to prevent SQL injection
+            $stmt = $conn->prepare("DELETE FROM users WHERE username = ? AND password = ?");
+            $stmt->bind_param("ss", $username, $password);
+
+            if ($stmt->execute()) {
+                echo "<script type='text/javascript'>alert('Account deleted successfully');</script>";
+            } else {
+                echo "<script type='text/javascript'>alert('Error deleting account');</script>";
+            }
+
+            $stmt->close();
         }
-    
+
         $conn->close();
     }
     ?>
     
-      
     <!-- Footer -->
     <footer>
         <p><a href="https://github.com/Vlad-stackover">&copy; <script>document.write(new Date().getFullYear());</script> Vlad-Stackover. All rights reserved.</a></p>
@@ -90,8 +85,6 @@
             <li><a href="#">Email</a></li>
         </ul>
     </footer>
-
-
 
 </body>
 </html>

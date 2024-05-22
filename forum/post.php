@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>4UM</title>
     <!-- External CSS styles -->
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
 
 
     <!-- favicon -->
-    <link rel="icon" type="image/x-icon" href="../logo.ico">
+    <link rel="icon" type="image/x-icon" href="logo.ico">
 
 
     <!-- font -->
@@ -23,37 +23,45 @@
 <!-- Header -->
 <header>
     <div class="logo">
-        <a href="../index.php"><h1> 4UM</h1></a>
+        <a href="index.php"><h1> 4UM</h1></a>
     </div>
     <nav>
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Forums</a></li>
-            <li><a href="#">Search</a></li>
-            
+            <li><a href="signup.php">Sign Up</a></li>
+            <?php
+                // Include database connection code
+                include("database.php");
+
+                $sql = "SELECT title FROM posts WHERE id = 1 ";
+                $result = $conn->query($sql);
+
+                // Step 3: Fetch the results of the query
+                if ($result->num_rows > 0) {
+                    // Step 4: Display the user data on your webpage
+                    
+                    while($row = $result->fetch_assoc()) {
+                        
+                        echo $row["title"];
+        
+                        
+                    }
+                
+                } else {
+                    echo "AnonimousUser". "<span style='margin-right: 15px; margin-left: 15px;'>";
+                }
+                $conn->close();
+            ?>
         </ul>
     </nav>
     <div class="create-post-btn">
-        <a href="../create.php">Create New Topic</a>
+        <a href="index.php">Back</a>
     </div>
 </header>
 
 <!-- Main Content -->
 <main>
 
-    <!-- List of Topics -->
-    <aside class="sidebar">
-        <div class="category_div">
-            <h1 id="select_category">Category</h1>
-            <h3><a href="tech.php">TECH</a></h3>
-            <h3><a href="cars.php">CARS</a></h3>
-            <h3><a href="guns.php">GUNS</a></h3>
-            <h3><a href="coffee.php">COFFEE</a></h3>
-            <h3><a href="health.php">HEALTH</a></h3>
-            <h3><a href="programing.php">PROGRAMING</a></h3>
-            
-        </div>
-    </aside>
+  
     
     <section class="posts_container">
 
@@ -61,10 +69,9 @@
 
         <?php
             // Include database connection code
-            include("../database.php");
+            include("database.php");
 
-            $sql = "SELECT * FROM posts
-            WHERE topic='PROGRAMING';";
+            $sql = "SELECT * FROM posts";
             $result = $conn->query($sql);
 
             // Step 3: Fetch the results of the query
@@ -73,7 +80,7 @@
                 
                 while($row = $result->fetch_assoc()) {
                     
-                    echo $row["title"] ."<span style='margin-right: 15px; margin-left: 15px;'>" . $row["username"]. "</span>" . $row["topic"]. "<hr>";
+                    echo $row["data_created"] ."<span style='margin-right: 15px; margin-left: 15px;'>" . $row["title"]. "</span>" . $row["content"]. "<hr>";
     
                     
                 }

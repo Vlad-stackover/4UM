@@ -115,7 +115,6 @@
     <ul class="social-links">
         <li><a href="https://github.com/Vlad-stackover">Github</a></li>
         <li><a href="https://www.linkedin.com/in/vlad-gruzin-638862305/">LinkedIn</a></li>
-        <li><a href="#">Email</a></li>
     </ul>
 </footer>
 
