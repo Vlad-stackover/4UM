@@ -32,7 +32,7 @@
                 // Include database connection code
                 include("database.php");
 
-                $sql = "SELECT username FROM users";
+                $sql = "SELECT username FROM users WHERE id='1';";
                 $result = $conn->query($sql);
 
                 // Step 3: Fetch the results of the query
@@ -89,19 +89,19 @@
             // Step 3: Fetch the results of the query
             if ($result->num_rows > 0) {
                 // Step 4: Display the user data on your webpage
-                
                 while($row = $result->fetch_assoc()) {
-                    
-                    echo $row["title"] ."<span style='margin-right: 15px; margin-left: 15px;'>" . $row["username"]. "</span>" . $row["topic"]. "<hr>";
-    
-                    
+                    echo "<div class='post-row' onclick=\"window.location.href='post.php?id=" . $row["id"] . "'\" style='cursor:pointer;'>";
+                    echo "<h3>" . $row["title"] . "</h3>";
+                    echo "<p>" . $row["content"] . "</p>";
+                    echo "<p><strong>Topic:</strong> " . $row["topic"] . "</p>";
+                    echo "</div><hr>";
                 }
-               
             } else {
                 echo "0 results";
             }
             $conn->close();
         ?>
+
 
         </div>
     </section>

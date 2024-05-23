@@ -32,7 +32,7 @@
                 // Include database connection code
                 include("database.php");
 
-                $sql = "SELECT title FROM posts WHERE id = 1 ";
+                $sql = "SELECT username FROM users WHERE id = 1 ";
                 $result = $conn->query($sql);
 
                 // Step 3: Fetch the results of the query
@@ -41,7 +41,7 @@
                     
                     while($row = $result->fetch_assoc()) {
                         
-                        echo $row["title"];
+                        echo $row["username"]. "<span style='margin-right: 15px; margin-left: 15px;'>";
         
                         
                     }
@@ -71,25 +71,33 @@
             // Include database connection code
             include("database.php");
 
-            $sql = "SELECT * FROM posts";
-            $result = $conn->query($sql);
+            // Get the post ID from the URL parameter
+            $post_id = $_GET['id'];
 
-            // Step 3: Fetch the results of the query
+            // Prepare and execute the query to fetch the post details
+            $sql = "SELECT * FROM posts WHERE id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("i", $post_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            // Display the post details
             if ($result->num_rows > 0) {
-                // Step 4: Display the user data on your webpage
-                
                 while($row = $result->fetch_assoc()) {
-                    
-                    echo $row["data_created"] ."<span style='margin-right: 15px; margin-left: 15px;'>" . $row["title"]. "</span>" . $row["content"]. "<hr>";
-    
-                    
+                    echo "<h3>".$row["username"]. "</h3>";
+                    echo "<h5>" .$row["data_created"]. "</h5>";
+                    echo "<h1>" . $row["title"] . "</h1>";
+                    echo "<p>" . $row["content"] . "</p>";
+                    echo "<p>Topic: " . $row["topic"] . "</p>";
                 }
-               
             } else {
-                echo "0 results";
+                echo "No post found.";
             }
+
+            $stmt->close();
             $conn->close();
         ?>
+
 
         </div>
     </section>

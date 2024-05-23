@@ -176,12 +176,20 @@ h1{
     /* display: flex; */
 }
 
+.post-row {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.post-row:hover {
+    background-color: #5a5959ab;
+}
 
 
 
 
-
-/* create.html */
+/* create.php */
 
 .submit_btn{
     background-color: #367238;
@@ -225,3 +233,7 @@ select{
     font-size: 16px;
     }
 
+#content{
+    height: 150px;
+    width: 400px;
+}

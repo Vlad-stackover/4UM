@@ -43,25 +43,25 @@
    
 
     <form class="create_form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-        <label for="username">User name:</label><br>
-        <input type="text" id="username" name="username" required><br><br>
+        <!-- <label for="username">User name:</label><br> -->
+        <input type="text" id="username" name="username" placeholder="User Name" required><br><br>
         
-        <label for="topic">Topic:</label><br>
+        <!-- <label for="topic">Topic:</label><br> -->
         <select id="topic" name="topic">
-            <option value="COFFEE">COFFEE</option>
-            <option value="CARS">CARS</option>
-            <option value="GUNS">GUNS</option>
-            <option value="HEALTH">HEALTH</option>
-            <option value="PROGRAMING">PROGRAMING</option>
-            <option value="tech">TECH</option>
+            <option value="COFFEE">Coffee</option>
+            <option value="CARS">Cars</option>
+            <option value="GUNS">Guns</option>
+            <option value="HEALTH">Health</option>
+            <option value="PROGRAMING">Programing</option>
+            <option value="tech">Tech</option>
         </select><br>
         <br>
 
-        <label for="title">Title:</label><br>
-        <input type="text" id="title" name="title" required><br><br>
+        <!-- <label for="title">Title:</label><br> -->
+        <input type="text" id="title" name="title" placeholder="Title" required><br><br>
 
-        <label for="content">Body text:</label><br>
-        <input type="text" id="content" name="content"><br><br>
+        <!-- <label for="content">Body text:</label><br> -->
+        <input type="text" id="content" name="content" placeholder="Wrtie more about..."><br><br>
         <input class="submit_btn" type="submit" value="Post" required>
         
         
