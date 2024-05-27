@@ -84,9 +84,9 @@
             // Display the post details
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
-                    echo "<h3>".$row["username"]. "</h3>";
+                    echo "<h3> Username: ".$row["username"]. "</h3>";
                     echo "<h5>" .$row["data_created"]. "</h5>";
-                    echo "<h1>" . $row["title"] . "</h1>";
+                    echo "<h1>Title: " . $row["title"] . "</h1>";
                     echo "<p>" . $row["content"] . "</p>";
                     echo "<p>Topic: " . $row["topic"] . "</p>";
                 }
@@ -102,6 +102,65 @@
         </div>
     </section>
 
+    <form class="comment_form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+        <!-- <label for="username">User name:</label><br> -->
+        <input type="text" id="username" name="username" placeholder="User Name" required><br><br>
+        
+        <input type="text" id="content" name="content" placeholder="Wrtie more about..."><br><br>
+
+        <input class="submit_btn" type="submit" value="Post" required>
+        
+        
+    </form>
+
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        include("database.php");
+    
+        
+    
+        $username = $_POST['username'];
+        $content = $_POST['content'];
+        
+    
+        $sql = "INSERT INTO comments(username, content)
+        VALUES ('$username', '$content')";
+    
+       
+    
+        $conn->close();
+    }
+    ?>
+    <?php
+            // Include database connection code
+            include("database.php");
+
+            // Get the post ID from the URL parameter
+            $post_id = $_GET['id'];
+
+            // Prepare and execute the query to fetch the post details
+            $sql = "SELECT * FROM comments";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("i", $post_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            // Display the post details
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    echo "<h3> Username: ".$row["username"]. "</h3>";
+                    echo "<h5>" .$row["data_created"]. "</h5>";
+                    echo "<h1>Title: " . $row["title"] . "</h1>";
+                    echo "<p>" . $row["content"] . "</p>";
+                    echo "<p>Topic: " . $row["topic"] . "</p>";
+                }
+            } else {
+                echo "No post found.";
+            }
+
+            $stmt->close();
+            $conn->close();
+        ?>
     
 </main>
 

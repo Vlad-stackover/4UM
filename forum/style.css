@@ -237,3 +237,8 @@ select{
     height: 150px;
     width: 400px;
 }
+
+.comment_form{
+    width: 100px;
+    height: 40px;
+}
