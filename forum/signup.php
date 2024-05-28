@@ -58,27 +58,30 @@
     </form>
 
     <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        include("database.php");
-    
-        
-    
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            include("database.php");
 
-    
-        $sql = "INSERT INTO users(username, password)
-        VALUES ('$username', '$password')";
-    
-        if ($conn->query($sql) === TRUE) {
-            echo "<script type='text/javascript'>alert('Welcome to our forum $username');</script>";
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+
+            // Hashowanie hasła
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+            $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("ss", $username, $hashed_password);
+
+            if ($stmt->execute()) {
+                echo "User registered successfully.";
+            } else {
+                echo "Error: " . $stmt->error;
+            }
+
+            $stmt->close();
+            $conn->close();
         }
-    
-        $conn->close();
-    }
-    ?>
+        ?>
+
     
       
     <!-- Footer -->
