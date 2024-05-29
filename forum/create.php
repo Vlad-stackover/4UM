@@ -61,7 +61,7 @@
         <input type="text" id="title" name="title" placeholder="Title" required><br><br>
 
         <!-- <label for="content">Body text:</label><br> -->
-        <input type="text" id="content" name="content" placeholder="Wrtie more about..."><br><br>
+        <textarea id="content" name="content" placeholder="Write your post..." required></textarea><br><br>
         <input class="submit_btn" type="submit" value="Post" required>
         
         

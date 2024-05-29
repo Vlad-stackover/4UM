@@ -70,7 +70,7 @@
             if ($result->num_rows > 0) {
                 // Step 4: Display the user data on your webpage
                 while($row = $result->fetch_assoc()) {
-                    echo "<div class='post-row' onclick=\"window.location.href='post.php?id=" . $row["id"] . "'\" style='cursor:pointer;'>";
+                    echo "<div class='post-row' onclick=\"window.location.href='../post.php?id=" . $row["id"] . "'\" style='cursor:pointer;'>";
                     echo "<h3>" . $row["title"] . "</h3>";
                     echo "<p>" . $row["content"] . "</p>";
                     echo "<p><strong>Topic:</strong> " . $row["topic"] . "</p>";

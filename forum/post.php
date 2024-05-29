@@ -26,7 +26,6 @@
         <ul>
             <li><a href="signup.php">Sign Up</a></li>
             <?php
-                // Include database connection code
                 include("database.php");
 
                 $sql = "SELECT username FROM users WHERE id = 1";
@@ -52,69 +51,66 @@
 <main>
     <section class="posts_container">
         <div class="post">
-        <?php
-            include("database.php");
+            <?php
+                include("database.php");
 
-            // Get the post ID from the URL parameter
-            $postId = $_GET['id'];
+                // Get the post ID from the URL parameter
+                $postId = $_GET['id'];
 
-            // Prepare and execute the query to fetch the post details
-            $sql = "SELECT * FROM posts WHERE id = ?";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("i", $postId);
-            $stmt->execute();
-            $result = $stmt->get_result();
+                // Prepare and execute the query to fetch the post details
+                $sql = "SELECT * FROM posts WHERE id = ?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("i", $postId);
+                $stmt->execute();
+                $result = $stmt->get_result();
 
-            // Display the post details
-            if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-                    echo "<h3>Username: ".$row["username"]."</h3>";
-                    echo "<h5>".$row["data_created"]."</h5>";
-                    echo "<h1>Title: " . $row["title"] . "</h1>";
-                    echo "<p>" . $row["content"] . "</p>";
-                    echo "<p>Topic: " . $row["topic"] . "</p>";
+                // Display the post details
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        echo "<h3>Username: ".$row["username"]."</h3>";
+                        echo "<h5>".$row["data_created"]."</h5><p>";
+                        echo "<h1>Title: " . $row["title"] . "</h1>";
+                        echo "<p>" . $row["content"] . "</p>";
+                        
+                    }
+                } else {
+                    echo "No post found.";
                 }
-            } else {
-                echo "No post found.";
-            }
 
-            $stmt->close();
-            $conn->close();
-        ?>
+                $stmt->close();
+                $conn->close();
+            ?>
         </div>
-        <?php
-            include("database.php");
 
-            // Get the post ID from the URL parameter
-            $post_id = $_GET['id'];
+        <div class="comments">
+            <?php
+                include("database.php");
 
-            // Prepare and execute the query to fetch the post details
-            $sql = "SELECT * FROM comments WHERE id = ?";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("i", $postId);
-            $stmt->execute();
-            $result = $stmt->get_result();
+                // Fetch comments for the specific post
+                $sql = "SELECT * FROM comments WHERE postId = ?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("i", $postId);
+                $stmt->execute();
+                $result = $stmt->get_result();
 
-            // Display the post details
-            if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-                    echo "<h3>Username: ".$row["username"]."</h3>";
-                    echo "<h5>".$row["data_created"]."</h5>";
-                    echo "<p>" . $row["content"] . "</p>";
-                    
+                // Display the comments
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        echo "<p><strong>" . $row["username"] . ":</strong> " . $row["content"] . "</p>";
+                    }
+                } else {
+                    echo "No comments yet.";
                 }
-            } else {
-                echo "";
-            }
 
-            $stmt->close();
-            $conn->close();
-        ?>
+                $stmt->close();
+                $conn->close();
+            ?>
+        </div>
 
-        <form class="comment_form" action="<?php echo $_SERVER['PHP_SELF'] . '?id=' . $post_id; ?>" method="post">
+        <form class="comment_form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?id=' . $postId; ?>" method="post">
             <input type="text" id="username" name="username" placeholder="User Name" required><br><br>
-            <textarea id="content" name="content" placeholder="Write more about..." required></textarea><br><br>
-            <input class="submit_btn" type="submit" value="Post">
+            <textarea id="content" name="content" placeholder="Write your comment..." required></textarea><br><br>
+            <input class="submit_btn" type="submit" value="Comment">
         </form>
 
         <?php
@@ -124,12 +120,15 @@
             $username = $_POST['username'];
             $content = $_POST['content'];
 
-            $sql = "INSERT INTO comments (username, content, post_id) VALUES ('$username', '$content')";
+            $sql = "INSERT INTO comments (username, content, postId) VALUES (?, ?, ?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("ssi", $username, $content, $post_id);
+            $stmt->bind_param("ssi", $username, $content, $postId);
 
             if ($stmt->execute()) {
                 echo "Comment posted successfully.";
+                // Redirect to avoid form resubmission
+                header("Location: " . $_SERVER['REQUEST_URI']);
+                exit();
             } else {
                 echo "Error: " . $stmt->error;
             }
@@ -138,9 +137,6 @@
             $conn->close();
         }
         ?>
-
-        <section class="comments_container">
-                  </section>
     </section>
 </main>
 
